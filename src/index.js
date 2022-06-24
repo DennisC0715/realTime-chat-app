@@ -3,9 +3,17 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { SubscriptionClient } from "subscriptions-transport-ws";
+import { WebSocketLink } from "@apollo/client/link/ws";
+
+const wsLink = new WebSocketLink({
+  uri: "ws://localhost:4000/",
+  options: { reconnect: true },
+});
 
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
+  link: wsLink,
+  uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
 

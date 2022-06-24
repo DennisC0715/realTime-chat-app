@@ -10,9 +10,19 @@ export const getMessage = gql`
   }
 `;
 
-export const postMessage = gql`
-  mutation {
-    postMessage(user: "Dennis", content: "Hello everyone") {
+export const POST_Message = gql`
+  mutation ($user: String!, $content: String!) {
+    postMessage(user: $user, content: $content) {
+      id
+      user
+      content
+    }
+  }
+`;
+
+export const messageSubscription = gql`
+  subscription {
+    messages {
       id
       user
       content

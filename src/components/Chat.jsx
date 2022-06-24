@@ -1,10 +1,14 @@
 import React from "react";
 // import "./Chat.css";
-import { useQuery } from "@apollo/client";
-import { getMessage } from "./query";
+import { useSubscription, useQuery } from "@apollo/client";
+import { getMessage, messageSubscription } from "./query";
 
 const Chat = ({ user }) => {
-  const { loading, error, data } = useQuery(getMessage);
+  // const { loading, error, data } = useQuery(getMessage);
+
+  const { data, loading, error } = useSubscription(messageSubscription);
+
+  console.log(data);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;

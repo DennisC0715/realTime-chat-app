@@ -1,8 +1,9 @@
 import React from "react";
 
-const SendBar = ({ message, handleChange }) => {
+const SendBar = ({ message, handleChange, onSend }) => {
   return (
     <form
+      onSubmit={onSend}
       style={{
         display: "flex",
         margin: 0,
